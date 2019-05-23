@@ -1,0 +1,8 @@
+prefix=/home/jyk/tony_ws/install
+
+Name: xiaobai_navigation
+Description: Description of xiaobai_navigation
+Version: 0.0.1
+Cflags: 
+Libs: -L/home/jyk/tony_ws/install/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/home/jyk/tony_ws/devel
+
+Name: ultrasound
+Description: Description of ultrasound
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/jyk/tony_ws/devel/lib 
+Requires: 

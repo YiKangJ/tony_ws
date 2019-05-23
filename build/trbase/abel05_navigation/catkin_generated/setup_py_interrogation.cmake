@@ -1,0 +1,6 @@
+set(abel05_navigation_SETUP_PY_VERSION "0.0.1")
+set(abel05_navigation_SETUP_PY_SCRIPTS "")
+set(abel05_navigation_SETUP_PY_PACKAGES "abel05_navigation")
+set(abel05_navigation_SETUP_PY_PACKAGE_DIRS "src/abel05_navigation")
+set(abel05_navigation_SETUP_PY_MODULES "")
+set(abel05_navigation_SETUP_PY_MODULE_DIRS "")

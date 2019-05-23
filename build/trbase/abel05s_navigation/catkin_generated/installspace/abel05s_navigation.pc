@@ -1,0 +1,8 @@
+prefix=/home/jyk/tony_ws/install
+
+Name: abel05s_navigation
+Description: Description of abel05s_navigation
+Version: 0.0.1
+Cflags: 
+Libs: -L/home/jyk/tony_ws/install/lib 
+Requires: 

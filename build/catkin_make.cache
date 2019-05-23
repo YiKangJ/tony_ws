@@ -1,0 +1,2 @@
+rbx1_nav:trbase/abel05_navigation:trbase/abel05s_navigation:trbase/abel10_navigation:trbase/abel10s_navigation:trbase/ls01d:trbase/trbase:trbase/trd_driver:trbase/ultrasound:trbase/xiaobai_navigation:trbase/ydlidar
+-DCATKIN_DEVEL_PREFIX=/home/jyk/tony_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jyk/tony_ws/install -G Unix Makefiles
