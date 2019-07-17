@@ -381,6 +381,12 @@ message_generation_DIR:PATH=/opt/ros/kinetic/share/message_generation/cmake
 message_runtime_DIR:PATH=/opt/ros/kinetic/share/message_runtime/cmake
 
 //Value Computed by CMake
+razor_imu_9dof_BINARY_DIR:STATIC=/home/jyk/tony_ws/build/razor_imu_9dof
+
+//Value Computed by CMake
+razor_imu_9dof_SOURCE_DIR:STATIC=/home/jyk/tony_ws/src/razor_imu_9dof
+
+//Value Computed by CMake
 rbx1_nav_BINARY_DIR:STATIC=/home/jyk/tony_ws/build/rbx1_nav
 
 //Value Computed by CMake
