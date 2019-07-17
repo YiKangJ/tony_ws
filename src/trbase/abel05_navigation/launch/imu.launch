@@ -1,0 +1,6 @@
+<launch>
+  <arg name="razor_config_file" default="$(find abel05_navigation)/config/my_razor.yaml"/>
+  <node pkg="abel05_navigation" type="imu_node.py" name="imu_node" output="screen">
+    <rosparam file="$(arg razor_config_file)" command="load"/>
+  </node>
+</launch>

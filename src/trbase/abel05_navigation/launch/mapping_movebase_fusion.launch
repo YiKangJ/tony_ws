@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="base_frame"  default="base_link"/>
+    <arg name="odom_frame"  default="odom"/>
+    
+    <!-- motor driver -->
+    <!-- include file="$(find abel05_navigation)/launch/cont_with_lidar_and_camera.launch" /-->
+
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen">
+        <remap from="image" to="/camera/depth/image_raw" />
+        <remap from="camera_info" to="/camera/depth/camera_info"/>
+        <remap from="scan" to="camera_scan" />
+        <param name="scan_height" value="300" />
+        <param name="range_max" value="0.8" />
+        <param name="range_min" value="0.4"/>
+        <param name="output_frame_id" value="/camera_link" />
+    </node>
+
+    <!-- ls01d laser -->
+    <!--
+    <node pkg="tf" type="static_transform_publisher" name="laser_link_broadcaster" args="0.1 0 0.2 3.14 0 0 base_link laser_link 100" /> 
+    <include file="$(find ls01d)/launch/ls01d.launch" />
+    -->
+    <!-- ydlidar laser -->
+    <node pkg="tf" type="static_transform_publisher" name="laser_link_broadcaster" args="0.1 0 0.2 0 0 0 base_link laser_link 100" /> 
+    <!-- include file="$(find ydlidar)/launch/lidar.launch" /-->
+
+    <!-- camera laser -->
+    <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.14 0.05 -0.05 0 0 0 laser_link camera_link 100" />
+
+
+    <!-- mapping -->
+    <!-- 
+    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" />
+    -->
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" >
+	<param name="base_frame" value="$(arg base_frame)" />
+        <param name="odom_frame" value="$(arg odom_frame)"/>
+        <param name="map_update_interval" value="5.0"/>
+        <param name="maxUrange" value="8.0"/>
+        <param name="minimumScore" value="50"/>
+        <param name="linearUpdate" value="0.3"/>
+        <param name="angularUpdate" value="0.4"/>
+        <param name="temporalUpdate" value="3.0"/>
+        <param name="xmin" value="-5.0"/>
+        <param name="ymin" value="-5.0"/>
+        <param name="xmax" value="5.0"/>
+        <param name="ymax" value="5.0"/>
+        <param name="delta" value="0.05"/>
+	<remap from="scan" to="laser_fusion"/>
+    </node>
+    <include file="$(find abel05_navigation)/launch/amcl.launch"/>
+    <!-- move_base -->
+    <include file="$(find abel05_navigation)/launch/fusion_move_base.launch"/>
+    <!-- include file="$(find abel05_navigation)/launch/nav_move_base.launch"/-->
+
+</launch>

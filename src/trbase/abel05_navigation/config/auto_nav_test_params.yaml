@@ -1,0 +1,25 @@
+obstacle_range: 1.5
+inflation_radius: 0.2
+controller_frequency: 4.0
+
+TrajectoryPlannerROS:
+    max_vel_theta: 0.6
+    min_vel_theta: -0.6
+
+NavfnROS:
+    planner_window_x: 100
+    planner_window_y: 100   
+
+local_costmap:
+    update_frequency: 3.0
+    publish_frequency: 2.0
+    resolution: 0.05
+    plugins:
+      - {name: inflation_layer,  type: "costmap_2d::InflationLayer"}
+
+global_costmap:
+    update_frequency: 3.0
+    publish_frequency: 2.0
+    resolution: 0.05
+    static_map: false
+    rolling_window: true

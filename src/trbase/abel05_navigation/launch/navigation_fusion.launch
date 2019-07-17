@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+    <param name="use_sim_time" value="false" />
+
+    <!-- motor driver -->
+    <!-- include file="$(find abel05_navigation)/launch/controller.launch" / -->
+
+    <!-- ls01d laser -->
+    <!--
+    <node pkg="tf" type="static_transform_publisher" name="laser_link_broadcaster" args="0.1 0 0.2 3.14 0 0 base_link laser_link 100" /> 
+    <include file="$(find ls01d)/launch/ls01d.launch" />
+    -->
+    <!-- ydlidar laser -->
+    <node pkg="tf" type="static_transform_publisher" name="laser_link_broadcaster" args="0.1 0 0.2 0 0 0 base_link laser_link 100" /> 
+    <!-- include file="$(find ydlidar)/launch/lidar.launch" / -->
+
+    <!-- camera laser -->
+    <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.14 0.05 -0.05 0 0 0 laser_link camera_link 100" /> 
+   
+    <!-- map_server -->
+     
+    <node pkg="map_server" type="map_server" name="map_server"
+          args="$(find abel05_navigation)/maps/lobby.yaml"/>
+	
+    <!-- load fake depth camera laser -->
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen">
+	<remap from="image" to="/camera/depth/image_raw" />
+	<remap from="camera_info" to="/camera/depth/camera_info"/>
+	<remap from="scan" to="camera_scan" />
+	<param name="scan_height" value="470" />
+	<param name="range_max" value="1.2" />
+	<param name="range_min" value="0.42"/>
+	<param name="output_frame_id" value="/camera_link" />
+    </node>    
+
+    <!-- amcl localization -->
+    <node pkg="amcl" type="amcl" name="amcl" />
+
+    <!-- move_base -->
+    <include file="$(find abel05_navigation)/launch/fusion_move_base.launch" />
+
+</launch>

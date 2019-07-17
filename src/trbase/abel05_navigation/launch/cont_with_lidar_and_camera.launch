@@ -1,0 +1,6 @@
+<launch>
+	<include file="$(find abel05_navigation)/launch/controller.launch"/>
+	<include file="$(find ydlidar)/launch/lidar.launch"/>
+	<include file="$(find astra_launch)/launch/astra.launch" />
+	<node pkg="libuvc_camera" type="camera_node" name="libuvc_camera_node" />
+</launch>
